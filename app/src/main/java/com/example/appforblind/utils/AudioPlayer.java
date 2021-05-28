@@ -44,7 +44,7 @@ public class AudioPlayer {
                     audioPlayerEvent.onCompleted();
             }
         });
-
+        mMediaPlayer.setVolume(new Float(0.0), new Float(0.0));
         mMediaPlayer.start();
     }
 
@@ -57,5 +57,11 @@ public class AudioPlayer {
     public interface AudioPlayerEvent {
         void onCompleted();
     }
+    /*
+    public void setVolume(){
+        mMediaPlayer.setVolume(new Float(0.0), new Float(0.0));
+    }
+    */
+
 
 }

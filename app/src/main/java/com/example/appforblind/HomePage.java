@@ -1,9 +1,12 @@
 package com.example.appforblind;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.appforblind.utils.AudioPlayer;
 import com.gauravk.audiovisualizer.visualizer.BlastVisualizer;
@@ -14,17 +17,24 @@ public class HomePage extends AppCompatActivity {
     //MediaPlayer mAudioPlayer;
     private   AudioPlayer mAudioPlayer;
 
+    private LocationIdentification locationIdentifier;
+    private VoiceRecognition voiceRecognizer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+
         //
         mAudioPlayer = new AudioPlayer();
+        //mAudioPlayer.setVolume();
         visualizer = findViewById(R.id.blast);
         runVisualizerThread();
         
         //runVisualizerThread(R.raw.sample);
       //  startPlayingAudio(R.raw.sample);
+        locationIdentifier = new LocationIdentification();
 
 
     }
@@ -83,6 +93,10 @@ public class HomePage extends AppCompatActivity {
 
             }
         }.start();
+
+
+    }
+    public void VoiceRecognition() {
 
 
     }
